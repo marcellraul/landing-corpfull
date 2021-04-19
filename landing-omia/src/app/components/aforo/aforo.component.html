@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-4 text-center mt-4" style="color:#ffffff ;">
+        <i class="material-icons" style=" position: relative; top: 2px;"> date_range </i>
+        <div class="ml-2 d-inline-flex font-secundary">
+            <p style="color: #ffffff;"> {{date  | date:'longDate' }}</p>
+        </div>
+    </div>
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 text-center mt-4 " style="color:#ffffff ;">
+        <i class="material-icons" style="position: relative; top: 1px;"> watch_later</i>
+        <div class="ml-2 d-inline-flex font-secundary">
+            <p style="color: #ffffff;">
+                {{datehour  | date:'shortTime'    }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center font-primary-aforo m-4"> Aforo actual</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="chartOptions; else loading" class="card-body"
+                    style="margin-bottom: -8em; margin-top: -8em;">
+                    <div id="chart">
+                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                            [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels"
+                            [fill]="chartOptions.fill" [colors]="chartOptions.colors"
+                            [dataLabels]="chartOptions.dataLabels">
+                        </apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row media-xlg" *ngIf="chartOptions">
+    <div class="col-12 text-center" style="position: relative;
+    top: -17vh;
+    font-size: 16vh;
+    font-weight: 500;">
+        <label style="color: white; ">{{ numberWithPoint(aforo_actual) }}</label>
+    </div>
+
+    <div class="col-6">
+        <div class="text-center" style="color: white; font-size: 2.5vh;">Mínimo <br> 1 persona</div>
+    </div>
+    <div class="col-6">
+        <div class="text-center" style="color: white; font-size: 2.5vh;">Máximo <br> {{ numberWithPoint(capacidad) }}
+            personas</div>
+    </div>
+</div> -->
+
+    <div class="col-lg-6 col-md-12" style="padding: 0px;">
+        <div class="row  mb-1" style="padding: 0px; margin: 0px;">
+            <div class="col-12  mb-1" style="padding: 10px;">
+                <div class="background-primary">
+                    <div class="text-center font-white p-5">
+                        <i class="material-icons" style="font-size: 70px ; position: relative; top: 8px;"> home</i>
+                        <div class="ml-3 d-inline-flex">{{ aforo_actual }}</div>
+                        <div class="font-white-min ">Clientes ahora mismo </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 ">
+                <div class="background-primary">
+                    <div class="text-center font-white p-5">
+                        <div class="font-white-min text-rigth">Máximo permitido</div>
+                        <i class="material-icons" style="font-size: 70px ; position: relative; top: 8px;">groups</i>
+                        <div class="ml-4  d-inline-flex">{{ numberWithPoint(capacidad) }}</div>
+                        <div class="font-white-min text-rigth ml-4" style="font-size: 25px !important;">Clientes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 ">
+                <div class="background-primary">
+                    <div class="text-center font-white p-5">
+                        <div class="font-white-min text-rigth">Aún pueden entrar</div>
+                        <i class="material-icons" style="font-size: 70px ; position: relative; top: 8px;">groups</i>
+                        <div class="ml-4  d-inline-flex">{{ numberWithPoint(disponible) }}</div>
+                        <div class="font-white-min text-rigth ml-4" style="font-size: 25px !important;">Clientes</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="row">
+        <div class="col-12 text-center" style="height: 500px;">
+            <label style="color: white;">loading ...</label>
+        </div>
+    </div>
+</ng-template>
